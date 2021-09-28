@@ -5,7 +5,50 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"TestModelDto": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"testField1": {
+						"type": "string"
+					},
+					"testField2": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"testField1",
+					"testField2"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TestModel": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"testField1": {
+						"type": "string"
+					},
+					"testField2": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"testField1",
+					"testField2"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -17,7 +60,166 @@
 		"contact": {}
 	},
 	"openapi": "3.0.0",
-	"paths": {},
+	"paths": {
+		"/auth/login": {
+			"post": {
+				"operationId": "Auth",
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/crud/create": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TestModelDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Crud"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TestModelDto"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/crud/getAll": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/TestModel"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Crud"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/crud/update": {
+			"post": {
+				"operationId": "Update",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Crud"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {}
+						}
+					}
+				}
+			}
+		},
+		"/crud/delete": {
+			"post": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Crud"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/mailer/send": {
+			"post": {
+				"operationId": "Post",
+				"responses": {
+					"201": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Mailer"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
 	"servers": [
 		{
 			"url": "/"
